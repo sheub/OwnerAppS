@@ -29,7 +29,7 @@ class CityFixtures extends Fixture implements OrderedFixtureInterface
             ->setName('Nantes')
             ->setCode('NAN')
             ->setLatitude(47.21725)
-            ->setLongitude("- 1.55336")
+            ->setLongitude(1.55336)
             ->addStation($this->getReference(StationFixtures::STA_NAN_REFERENCE))
         ;
         $manager->persist($cityNantes);

@@ -8,7 +8,9 @@
 
 namespace App\Repository\Doctrine;
 
+use App\Entity\City;
 use App\Repository\AbstractClass\AbstractRepository;
+use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Class CityRepository
@@ -17,6 +19,10 @@ use App\Repository\AbstractClass\AbstractRepository;
  */
 class CityRepository extends AbstractRepository
 {
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, City::class);
+    }
 
     /**
      *
@@ -27,7 +33,7 @@ class CityRepository extends AbstractRepository
      *
      *
      */
-    public function search($order = 'asc', $limit = 20, $offset = 0)
+    public function search(string $order = 'asc', int $limit = 20, int $offset = 0)
     {
         $qb = $this
             ->createQueryBuilder('city')

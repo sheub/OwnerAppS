@@ -52,16 +52,16 @@ class City
     private $name;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", options={"unsigned"=true}, nullable=true)
+     * @var float
+     * @ORM\Column(type="float", options={"unsigned"=true}, nullable=true, columnDefinition="FLOAT")
      *
      * @Serializer\Expose
      */
     private $latitude = null;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", options={"unsigned"=true}, nullable=true)
+     * @var float
+     * @ORM\Column(type="float", options={"unsigned"=true}, nullable=true, columnDefinition="FLOAT")
      *
      * @Serializer\Expose
      */
@@ -168,36 +168,36 @@ class City
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getLatitude(): ?string
+    public function getLatitude(): ?float
     {
         return $this->latitude;
     }
 
     /**
-     * @param string $latitude
+     * @param float $latitude
      * @return City
      */
-    public function setLatitude(?string $latitude): City
+    public function setLatitude(?float $latitude): City
     {
         $this->latitude = $latitude;
         return $this;
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getLongitude(): ?string
+    public function getLongitude(): ?float
     {
         return $this->longitude;
     }
 
     /**
-     * @param string $longitude
+     * @param float $longitude
      * @return City
      */
-    public function setLongitude(?string $longitude): City
+    public function setLongitude(?float $longitude): City
     {
         $this->longitude = $longitude;
         return $this;

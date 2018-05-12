@@ -10,7 +10,10 @@ namespace App\Controller;
 
 
 use App\Entity\City;
+use App\Entity\Station;
 use App\Repository\Doctrine\CityRepository;
+use App\Repository\Doctrine\StationRepository;
+use App\Service\NearService;
 use App\WebService\Representation\CityRepresentation;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcherInterface;
@@ -33,7 +36,7 @@ class ApiController extends FOSRestController
     /**
      * Return list of cities
      *
-     * @Rest\Get("/cities", name="api_list")
+     * @Rest\Get("/cities", name="city_list")
      *
      * @Rest\QueryParam(
      *     name="order",
@@ -71,5 +74,58 @@ class ApiController extends FOSRestController
         );
 
         return new CityRepresentation($pager);
+    }
+
+    /**
+     * Get Stations near
+     *
+     * @Rest\Get("/stations/near", name="stations_near")
+     *
+     * @Rest\QueryParam(
+     *     name="lat",
+     *     requirements="^-?(?:\d+|\d*\.\d+)$",
+     *     description="Max number of movies per page."
+     * )
+     * @Rest\QueryParam(
+     *     name="lng",
+     *     requirements="^-?(?:\d+|\d*\.\d+)$",
+     *     description="Max number of movies per page."
+     * )
+     * @Rest\QueryParam(
+     *     name="radius",
+     *     requirements="\d+",
+     *     default="0",
+     *     description="The pagination page"
+     * )
+     * @Rest\View()
+     *
+     * @param ParamFetcherInterface $paramFetcher
+     * @param NearService $nearService
+     * @return CityRepresentation
+     *
+     * @author Manly AUSTRIE <austrie.manly@gmail.com>
+     */
+    public function ApiStationNear(ParamFetcherInterface $paramFetcher, NearService $nearService)
+    {
+        if (!$paramFetcher->get('lat') || !$paramFetcher->get('lng') || !$paramFetcher->get('radius')) {
+            throw new \LogicException('$lat & $lng & $radius must be defined and must be numeric typpe.');
+        }
+
+        $resultNear = $nearService->getLatitudeLongitude(
+            (float)$paramFetcher->get('lat'),
+            (float)$paramFetcher->get('lng'),
+            $paramFetcher->get('radius')
+        );
+
+        /** @var StationRepository $stationRepository */
+        $stationRepository = $this->getDoctrine()->getRepository(Station::class);
+        $stations = $stationRepository->getStationNear(
+            $paramFetcher->get('lat'),
+            $paramFetcher->get('lng'),
+            $resultNear['lat'],
+            $resultNear['lng']
+        );
+
+        return $stations;
     }
 }

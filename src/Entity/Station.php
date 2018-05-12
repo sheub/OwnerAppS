@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class Station
@@ -20,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\HasLifecycleCallbacks()
  *
  * @author Manly AUSTRIE <austrie.manly@gmail.com>
+ * @Serializer\ExclusionPolicy("ALL")
  */
 class Station
 {
@@ -35,6 +37,8 @@ class Station
     /**
      * @var string
      * @ORM\Column(type="string", length=100, nullable=true)
+     *
+     * @Serializer\Expose
      */
     private $code = null;
 
@@ -42,6 +46,8 @@ class Station
      * @var string
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank()
+     *
+     * @Serializer\Expose
      */
     private $name;
 
@@ -49,36 +55,48 @@ class Station
      * @var string
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
+     *
+     * @Serializer\Expose
      */
     private $address;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
+     *
+     * @Serializer\Expose
      */
     private $description = null;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", options={"unsigned"=true}, nullable=true)
+     * @var float
+     * @ORM\Column(type="float", options={"unsigned"=true}, nullable=true, columnDefinition="FLOAT")
+     *
+     * @Serializer\Expose
      */
     private $latitude = null;
 
     /**
-     * @var string
-     * @ORM\Column(type="string", options={"unsigned"=true}, nullable=true)
+     * @var float
+     * @ORM\Column(type="float", options={"unsigned"=true}, nullable=true, columnDefinition="FLOAT")
+     *
+     * @Serializer\Expose
      */
     private $longitude = null;
 
     /**
      * @var int
      * @ORM\Column(type="integer", options={"unsigned"=true}, nullable=true)
+     *
+     * @Serializer\Expose
      */
     private $bikesCapacity = null;
     
     /**
      * @var int
      * @ORM\Column(type="integer", options={"unsigned"=true}, nullable=true)
+     *
+     * @Serializer\Expose
      */
     private $bikesAvailable = null;
 
@@ -91,12 +109,16 @@ class Station
     /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
+     *
+     * @Serializer\Expose
      */
     private $createdAt;
 
     /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
+     *
+     * @Serializer\Expose
      */
     private $updatedAt;
 
@@ -206,36 +228,36 @@ class Station
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getLatitude(): ?string
+    public function getLatitude(): ?float
     {
         return $this->latitude;
     }
 
     /**
-     * @param string $latitude
+     * @param float $latitude
      * @return Station
      */
-    public function setLatitude(?string $latitude): Station
+    public function setLatitude(?float $latitude): Station
     {
         $this->latitude = $latitude;
         return $this;
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function getLongitude(): ?string
+    public function getLongitude(): ?float
     {
         return $this->longitude;
     }
 
     /**
-     * @param string $longitude
+     * @param float $longitude
      * @return Station
      */
-    public function setLongitude(?string $longitude): Station
+    public function setLongitude(?float $longitude): Station
     {
         $this->longitude = $longitude;
         return $this;

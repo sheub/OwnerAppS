@@ -22,9 +22,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  */
 abstract class AbstractRepository extends ServiceEntityRepository
 {
-    public function __construct(RegistryInterface $registry)
+    public function __construct(RegistryInterface $registry, $entity)
     {
-        parent::__construct($registry, City::class);
+        parent::__construct($registry, $entity);
     }
 
     protected function paginate(QueryBuilder $qb, int $limit = 20, int $offset = 0)
