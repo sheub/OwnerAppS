@@ -1,0 +1,37 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <a href="{{ path('city_new') }}" role="button" class="btn btn-outline-success">{{ 'city.new'|trans }} <i class="fas fa-plus"></i></a>
+    </div>
+    <div class="row">
+        {% embed 'component/_datatable.html.twig' %}
+            {% block _datatable_html__thead %}
+                <tr>
+                    <th>{{ 'city.list.name' }}</th>
+                    <th>{{ 'city.list.code' }}</th>
+                    <th>{{ 'city.list.latitude' }}</th>
+                    <th>{{ 'city.list.longitude' }}</th>
+                    <th></th>
+                </tr>
+            {% endblock %}
+            {% block _datatable_html__tbody %}
+                {% for city in cities %}
+                    <tr>
+                        <td>{{ city.name }}</td>
+                        <td>{{ city.code }}</td>
+                        <td>{{ city.latitude }}</td>
+                        <td>{{ city.longitude }}</td>
+                        <td>
+                            <a href="{{ path('city_edit', {'id': city.id}) }}" role="button" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a>
+                            <a href="{{ path('city_delete', {'id': city.id}) }}" role="button" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endblock %}
+        {% endembed %}
+    </div>
+{%  endblock %}
+
+{%  block javascripts %}
+{%  endblock %}
