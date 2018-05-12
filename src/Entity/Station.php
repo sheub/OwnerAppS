@@ -59,14 +59,14 @@ class Station
     private $description = null;
 
     /**
-     * @var float
-     * @ORM\Column(type="float", options={"unsigned"=true}, nullable=true)
+     * @var string
+     * @ORM\Column(type="string", options={"unsigned"=true}, nullable=true)
      */
     private $latitude = null;
 
     /**
-     * @var float
-     * @ORM\Column(type="float", options={"unsigned"=true}, nullable=true)
+     * @var string
+     * @ORM\Column(type="string", options={"unsigned"=true}, nullable=true)
      */
     private $longitude = null;
 
@@ -206,36 +206,36 @@ class Station
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getLatitude(): ?float
+    public function getLatitude(): ?string
     {
         return $this->latitude;
     }
 
     /**
-     * @param float $latitude
+     * @param string $latitude
      * @return Station
      */
-    public function setLatitude(?float $latitude): Station
+    public function setLatitude(?string $latitude): Station
     {
         $this->latitude = $latitude;
         return $this;
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getLongitude(): ?float
+    public function getLongitude(): ?string
     {
         return $this->longitude;
     }
 
     /**
-     * @param float $longitude
+     * @param string $longitude
      * @return Station
      */
-    public function setLongitude(?float $longitude): Station
+    public function setLongitude(?string $longitude): Station
     {
         $this->longitude = $longitude;
         return $this;

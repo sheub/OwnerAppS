@@ -46,14 +46,14 @@ class City
     private $name;
 
     /**
-     * @var float
-     * @ORM\Column(type="float", options={"unsigned"=true}, nullable=true)
+     * @var string
+     * @ORM\Column(type="string", options={"unsigned"=true}, nullable=true)
      */
     private $latitude = null;
 
     /**
-     * @var float
-     * @ORM\Column(type="float", options={"unsigned"=true}, nullable=true)
+     * @var string
+     * @ORM\Column(type="string", options={"unsigned"=true}, nullable=true)
      */
     private $longitude = null;
 
@@ -158,36 +158,36 @@ class City
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getLatitude(): ?float
+    public function getLatitude(): ?string
     {
         return $this->latitude;
     }
 
     /**
-     * @param float $latitude
+     * @param string $latitude
      * @return City
      */
-    public function setLatitude(?float $latitude): City
+    public function setLatitude(?string $latitude): City
     {
         $this->latitude = $latitude;
         return $this;
     }
 
     /**
-     * @return float
+     * @return string
      */
-    public function getLongitude(): ?float
+    public function getLongitude(): ?string
     {
         return $this->longitude;
     }
 
     /**
-     * @param float $longitude
+     * @param string $longitude
      * @return City
      */
-    public function setLongitude(?float $longitude): City
+    public function setLongitude(?string $longitude): City
     {
         $this->longitude = $longitude;
         return $this;
