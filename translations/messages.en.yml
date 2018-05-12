@@ -1,0 +1,7 @@
+common:
+    home: 'Home'
+homepage:
+    btn:
+        view: 'View'
+        edit: 'Edit'
+    available: 'Available'
