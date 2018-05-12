@@ -15,7 +15,6 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
  * Class CityRepository
- * @package App\Controller
  *
  * @author Manly AUSTRIE <austrie.manly@gmail.com>
  */
