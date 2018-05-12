@@ -1,0 +1,23 @@
+<header>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+        <div class="container d-flex justify-content-between">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="{{ path('homepage') }}"><i class="fas fa-home"></i> <strong>{{ 'common.home'|trans }}</strong></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item {% if 'city' in app.request.attributes.get('_route') %}active{% endif %}">
+                            <a class="nav-link" href="{{ path('city_list') }}"><i class="fas fa-globe"></i> {{ 'common.city'|trans }}</a>
+                        </li>
+                        <li class="nav-item {% if 'station' in app.request.attributes.get('_route') %}active{% endif %}">
+                            <a class="nav-link" href="#"><i class="fab fa-playstation"></i> {{ 'common.station'|trans }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>

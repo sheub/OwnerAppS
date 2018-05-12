@@ -1,0 +1,46 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="jumbotron-heading">{{ 'homepage.header.title'|trans }}</h1>
+        <p class="lead text-muted">{{ 'homepage.descrption.title'|trans }}</p>
+        <p><i class="fas fa-bicycle fa-7x"></i></p>
+    </div>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                {% for city in cities %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 box-shadow">
+                            <img class="card-img-top img-fluid"
+                                 alt="Thumbnail [100%x225]"
+                                 style="height: 200px; width: 100%;"
+                                 src="{{ asset('build/images/'~city.name~'.jpg') }}?text=Image cap"
+                                 data-holder-rendered="true">
+                            <div class="card-body">
+                                <p class="card-text">{{ city.stations|length }} {{ 'homepage.stations'|trans }}.</p>
+                                {% set bikesCapacity = 0 %}
+                                {% set bikesAvailable = 0 %}
+                                {% for station in city.stations %}
+                                    {% set bikesCapacity = bikesCapacity + station.bikesCapacity %}
+                                    {% set bikesAvailable = bikesAvailable + station.bikesAvailable %}
+                                {% endfor %}
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="{{ path('city_list') }}" role="button" class="btn btn-sm btn-outline-secondary">{{ 'homepage.btn.view'|trans }}</a>
+                                        <a href="{{ path('city_edit', {'id': city.id}) }}" role="button" class="btn btn-sm btn-outline-secondary">{{ 'homepage.btn.edit'|trans }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <div class="float-right">
+                                    <small class="text-muted">{{ bikesAvailable }} <i class="fas fa-bicycle"></i> {{ 'homepage.available'|trans }} / {{ bikesCapacity }}.</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

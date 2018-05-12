@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}TapAndGo - App - {% endblock %}</title>
+    <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+{% include 'common/_navbar.html.twig' %}
+<div class="container">
+    <main role="main">
+        <section class="jumbotron text-center">
+            {% block body %}{% endblock %}
+        </section>
+    </main>
+</div>
+{% include 'common/_footer.html.twig' %}
+<script src="{{ asset('build/app.js') }}"></script>
+<script defer
+        src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"
+        integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR"
+        crossorigin="anonymous">
+</script>
+{% block javascripts %}{% endblock %}
+</body>
 </html>
