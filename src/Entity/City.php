@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class City
@@ -20,6 +21,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\HasLifecycleCallbacks()
  *
  * @author Manly AUSTRIE <austrie.manly@gmail.com>
+ * @Serializer\ExclusionPolicy("ALL")
  */
 class City
 {
@@ -35,6 +37,8 @@ class City
     /**
      * @var string
      * @ORM\Column(type="string", length=100, nullable=true)
+     *
+     * @Serializer\Expose
      */
     private $code = null;
 
@@ -42,18 +46,24 @@ class City
      * @var string
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank()
+     *
+     * @Serializer\Expose
      */
     private $name;
 
     /**
      * @var string
      * @ORM\Column(type="string", options={"unsigned"=true}, nullable=true)
+     *
+     * @Serializer\Expose
      */
     private $latitude = null;
 
     /**
      * @var string
      * @ORM\Column(type="string", options={"unsigned"=true}, nullable=true)
+     *
+     * @Serializer\Expose
      */
     private $longitude = null;
 

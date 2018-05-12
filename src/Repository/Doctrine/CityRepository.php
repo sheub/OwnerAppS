@@ -8,22 +8,33 @@
 
 namespace App\Repository\Doctrine;
 
-
-use App\Entity\City;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Repository\AbstractClass\AbstractRepository;
 
 /**
  * Class CityRepository
  *
  * @author Manly AUSTRIE <austrie.manly@gmail.com>
  */
-class CityRepository extends ServiceEntityRepository
+class CityRepository extends AbstractRepository
 {
 
-    public function __construct(RegistryInterface $registry)
+    /**
+     *
+     * @param string $order
+     * @param int $limit
+     * @param int $offset
+     * @return \Pagerfanta\Pagerfanta
+     *
+     *
+     */
+    public function search($order = 'asc', $limit = 20, $offset = 0)
     {
-        parent::__construct($registry, City::class);
-    }
+        $qb = $this
+            ->createQueryBuilder('city')
+            ->select('city')
+            ->orderBy('city.name', $order)
+        ;
 
+        return $this->paginate($qb, $limit, $offset);
+    }
 }
