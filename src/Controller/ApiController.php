@@ -15,6 +15,7 @@ use App\Repository\Doctrine\CityRepository;
 use App\Repository\Doctrine\StationRepository;
 use App\Service\NearService;
 use App\WebService\Representation\CityRepresentation;
+use App\WebService\Representation\StationRepresentation;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 
@@ -74,6 +75,49 @@ class ApiController extends FOSRestController
         );
 
         return new CityRepresentation($pager);
+    }
+
+    /**
+     * Return list of stations
+     *
+     * @Rest\Get("/stations", name="station_list")
+     *
+     * @Rest\QueryParam(
+     *     name="order",
+     *     requirements="asc|desc",
+     *     default="asc",
+     *     description="Sort order (asc or desc)"
+     * )
+     * @Rest\QueryParam(
+     *     name="limit",
+     *     requirements="\d+",
+     *     default="15",
+     *     description="Max number of movies per page."
+     * )
+     * @Rest\QueryParam(
+     *     name="page",
+     *     requirements="\d+",
+     *     default="1",
+     *     description="The pagination page"
+     * )
+     * @Rest\View()
+     *
+     * @param ParamFetcherInterface $paramFetcher
+     * @return StationRepresentation
+     *
+     * @author Manly AUSTRIE <austrie.manly@gmail.com>
+     */
+    public function ApiStationList(ParamFetcherInterface $paramFetcher)
+    {
+        /** @var StationRepository $stationRepository */
+        $stationRepository = $this->getDoctrine()->getRepository(Station::class);
+        $pager = $stationRepository->search(
+            $paramFetcher->get('order'),
+            $paramFetcher->get('limit'),
+            $paramFetcher->get('page')
+        );
+
+        return new StationRepresentation($pager);
     }
 
     /**

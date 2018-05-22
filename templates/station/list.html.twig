@@ -1,0 +1,37 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <a href="{{ path('station_new') }}" role="button" class="btn btn-outline-success">{{ 'station.new'|trans }} <i class="fas fa-plus"></i></a>
+    </div>
+    <div class="row">
+        {% embed 'component/_datatable.html.twig' %}
+            {% block _datatable_html__thead %}
+                <tr>
+                    <th>{{ 'station.list.name' }}</th>
+                    <th>{{ 'station.list.code' }}</th>
+                    <th>{{ 'station.list.latitude' }}</th>
+                    <th>{{ 'station.list.longitude' }}</th>
+                    <th></th>
+                </tr>
+            {% endblock %}
+            {% block _datatable_html__tbody %}
+                {% for station in stations %}
+                    <tr>
+                        <td>{{ station.name }}</td>
+                        <td>{{ station.code }}</td>
+                        <td>{{ station.latitude }}</td>
+                        <td>{{ station.longitude }}</td>
+                        <td>
+                            <a href="{{ path('station_edit', {'id': station.id}) }}" role="button" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a>
+                            <a href="{{ path('station_delete', {'id': station.id}) }}" role="button" class="btn btn-outline-danger"><i class="fas fa-trash-alt"></i></a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            {% endblock %}
+        {% endembed %}
+    </div>
+{%  endblock %}
+
+{%  block javascripts %}
+{%  endblock %}

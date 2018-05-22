@@ -52,4 +52,24 @@ class StationRepository extends AbstractRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    /**
+     *
+     * @param string $order
+     * @param int $limit
+     * @param int $offset
+     * @return \Pagerfanta\Pagerfanta
+     *
+     *
+     */
+    public function search(string $order = 'asc', int $limit = 20, int $offset = 0)
+    {
+        $qb = $this
+            ->createQueryBuilder('station')
+            ->select('station')
+            ->orderBy('station.name', $order)
+        ;
+
+        return $this->paginate($qb, $limit, $offset);
+    }
 }
