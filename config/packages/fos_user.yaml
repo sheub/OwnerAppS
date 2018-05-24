@@ -1,0 +1,8 @@
+fos_user:
+    db_driver: orm
+    firewall_name: api
+    user_class: App\Entity\User
+    from_email:
+        address: "www-data@localhost"
+        sender_name: FOSUB
+    use_flash_notifications: false

@@ -109,6 +109,7 @@ class ApiController extends FOSRestController
      */
     public function ApiStationList(ParamFetcherInterface $paramFetcher)
     {
+        $user = $this->getUser();
         /** @var StationRepository $stationRepository */
         $stationRepository = $this->getDoctrine()->getRepository(Station::class);
         $pager = $stationRepository->search(

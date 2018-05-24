@@ -27,3 +27,39 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    auth_token_user_provider:
+        class: App\Security\AuthTokenUserProvider
+        arguments: ["@auth_token_repository", "@user_repository"]
+        public:    false
+
+    auth_token_repository:
+        class:   Doctrine\ORM\EntityManager
+        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+        arguments: ["App:AuthToken"]
+
+    user_repository:
+        class:   Doctrine\ORM\EntityManager
+        factory: ["@doctrine.orm.entity_manager", "getRepository"]
+        arguments: ["App:User"]
+
+    auth_token_authenticator:
+        class:     App\Security\AuthTokenAuthenticator
+        arguments: ["@security.http_utils"]
+        public:    false
+
+    FOS\OAuthServerBundle\Model\AccessTokenManagerInterface:
+        alias: fos_oauth_server.access_token_manager.default
+        public: true
+
+    FOS\OAuthServerBundle\Model\AuthCodeManagerInterface:
+        alias: fos_oauth_server.auth_code_manager.default
+        public: true
+
+    FOS\OAuthServerBundle\Model\ClientManagerInterface:
+        alias: fos_oauth_server.client_manager.default
+        public: true
+
+    FOS\OAuthServerBundle\Model\RefreshTokenManagerInterface:
+        alias: fos_oauth_server.refresh_token_manager.default
+        public: true
