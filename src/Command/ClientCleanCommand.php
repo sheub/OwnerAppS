@@ -8,7 +8,6 @@
 
 namespace App\Command;
 
-
 use FOS\OAuthServerBundle\Model\AccessTokenManagerInterface;
 use FOS\OAuthServerBundle\Model\AuthCodeManagerInterface;
 use FOS\OAuthServerBundle\Model\RefreshTokenManagerInterface;
@@ -55,7 +54,8 @@ class ClientCleanCommand extends Command
         $this
             ->setName('oauth:clean')
             ->setDescription('Clean expired tokens')
-            ->setHelp(<<<EOT
+            ->setHelp(
+                <<<EOT
 The <info>%command.name%</info> command will remove expired OAuth2 tokens.
 
   <info>php %command.full_name%</info>

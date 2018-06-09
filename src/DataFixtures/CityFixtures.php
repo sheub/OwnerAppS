@@ -8,7 +8,6 @@
 
 namespace App\DataFixtures;
 
-
 use App\Entity\City;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;

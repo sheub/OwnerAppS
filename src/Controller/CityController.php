@@ -8,7 +8,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\City;
 use App\Form\CityType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -52,8 +51,9 @@ class CityController extends Controller
      *
      * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
-    public function cityEdit(Request $request, City $city) {
-       return $this->processCity($request, $city);
+    public function cityEdit(Request $request, City $city)
+    {
+        return $this->processCity($request, $city);
     }
 
     /**
@@ -66,7 +66,8 @@ class CityController extends Controller
      *
      * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
-    public function cityNew(Request $request) {
+    public function cityNew(Request $request)
+    {
         return $this->processCity($request, new City(), true);
     }
 
@@ -104,7 +105,8 @@ class CityController extends Controller
      *
      * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
-    private function processCity(Request $request, City $city, bool $new = false) {
+    private function processCity(Request $request, City $city, bool $new = false)
+    {
         $entityManager = $this->getDoctrine()->getManager();
 
         // creation du formulaire
@@ -113,7 +115,7 @@ class CityController extends Controller
         ));
 
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $city = $form->getData();
             $entityManager->persist($city);
             $entityManager->flush();

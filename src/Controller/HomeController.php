@@ -8,7 +8,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\City;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -37,7 +36,7 @@ class HomeController extends Controller
     public function home(Request $request)
     {
         $cityRepo = $this->getDoctrine()->getRepository(City::class);
-        return $this->render('homepage/_index.html.twig',[
+        return $this->render('homepage/_index.html.twig', [
             'cities' => $cityRepo->findAll()
         ]);
     }

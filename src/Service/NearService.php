@@ -15,7 +15,8 @@ class NearService
      * @param $radius
      * @return array
      */
-    public function getLatitudeLongitude(float $lat, float $lng, int $radius) {
+    public function getLatitudeLongitude(float $lat, float $lng, int $radius)
+    {
         $distance = (int)$radius;
         $earthRadius = 6371;
         // $lat1 = deg2rad($lat);

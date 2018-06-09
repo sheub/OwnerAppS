@@ -310,5 +310,4 @@ class City
     {
         $this->updatedAt = new \DateTime();
     }
-
 }

@@ -8,7 +8,6 @@
 
 namespace App\DataFixtures;
 
-
 use App\Entity\Station;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -71,7 +70,7 @@ class StationFixtures extends Fixture implements OrderedFixtureInterface
             ],
         ];
 
-        foreach ($stations as $station){
+        foreach ($stations as $station) {
             $stationTmp = new Station();
             $stationTmp
                 ->setActive(true)

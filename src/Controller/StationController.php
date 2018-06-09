@@ -8,7 +8,6 @@
 
 namespace App\Controller;
 
-
 use App\Entity\Station;
 use App\Form\StationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -51,7 +50,8 @@ class StationController extends Controller
      *
      * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
-    public function stationEdit(Request $request, Station $station) {
+    public function stationEdit(Request $request, Station $station)
+    {
         return $this->processStation($request, $station);
     }
 
@@ -65,7 +65,8 @@ class StationController extends Controller
      *
      * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
-    public function stationNew(Request $request) {
+    public function stationNew(Request $request)
+    {
         return $this->processStation($request, new Station(), true);
     }
 
@@ -103,7 +104,8 @@ class StationController extends Controller
      *
      * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
-    private function processStation(Request $request, Station $station, bool $new = false) {
+    private function processStation(Request $request, Station $station, bool $new = false)
+    {
         $entityManager = $this->getDoctrine()->getManager();
 
         // creation du formulaire
@@ -112,7 +114,7 @@ class StationController extends Controller
         ));
 
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
+        if ($form->isSubmitted() && $form->isValid()) {
             $station = $form->getData();
             $entityManager->persist($station);
             $entityManager->flush();
