@@ -6,7 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use FOS\UserBundle\Model\User as BaseUser;
+
+//use FOS\UserBundle\Model\User as BaseUser;
 
 /**
  * Class User
@@ -14,7 +15,7 @@ use FOS\UserBundle\Model\User as BaseUser;
  * @ORM\Entity(repositoryClass="App\Repository\Doctrine\UserRepository")
  * @ORM\HasLifecycleCallbacks()
  */
-class User extends BaseUser
+class User
 {
 
     /**

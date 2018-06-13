@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Manly
- * Date: 12/05/2018
- * Time: 12:18
- */
 
 namespace App\Controller;
 
@@ -20,8 +14,6 @@ use Symfony\Component\HttpFoundation\Response;
  * Class CityController
  *
  * @Route("/{_locale}/city", name="city_", requirements={"_locale"="%app.locales%"})
- *
- * @author Manly AUSTRIE <austrie.manly@gmail.com>
  */
 class CityController extends Controller
 {
@@ -29,8 +21,6 @@ class CityController extends Controller
      * List of city
      *
      * @Route("/list", name="list")
-     *
-     * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
     public function cityList()
     {
@@ -48,8 +38,6 @@ class CityController extends Controller
      * @param Request $request
      * @param City $city
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     *
-     * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
     public function cityEdit(Request $request, City $city)
     {
@@ -63,8 +51,6 @@ class CityController extends Controller
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
-     *
-     * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
     public function cityNew(Request $request)
     {

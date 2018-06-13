@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Manly
- * Date: 12/05/2018
- * Time: 13:50
- */
+
 
 namespace App\Controller;
 
@@ -28,8 +23,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
  * Class ApiController
  *
  * @Route("/api", name="api_")
- *
- * @author Manly AUSTRIE <austrie.manly@gmail.com>
  */
 class ApiController extends FOSRestController
 {
@@ -60,8 +53,6 @@ class ApiController extends FOSRestController
      *
      * @param ParamFetcherInterface $paramFetcher
      * @return CityRepresentation
-     *
-     * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
     public function ApiCityList(ParamFetcherInterface $paramFetcher)
     {
@@ -103,8 +94,6 @@ class ApiController extends FOSRestController
      *
      * @param ParamFetcherInterface $paramFetcher
      * @return StationRepresentation
-     *
-     * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
     public function ApiStationList(ParamFetcherInterface $paramFetcher)
     {
@@ -146,8 +135,6 @@ class ApiController extends FOSRestController
      * @param ParamFetcherInterface $paramFetcher
      * @param NearService $nearService
      * @return CityRepresentation
-     *
-     * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
     public function ApiStationNear(ParamFetcherInterface $paramFetcher, NearService $nearService)
     {

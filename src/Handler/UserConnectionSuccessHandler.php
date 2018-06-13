@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Manly AUSTRIE <austrie.manly@gmail.com>
- * Date: 22/05/18
- * Time: 12:00
- */
+
 
 namespace App\Handler;
 
@@ -32,14 +27,12 @@ class UserConnectionSuccessHandler implements AuthenticationSuccessHandlerInterf
      * @param TokenInterface $token
      * @return RedirectResponse|Response
      * @throws \Exception
-     *
-     * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
         $session = $request->getSession();
 
-        // on met les locales du site en session
+        // Set locales of the app
         $locales = $this->container->getParameter('app.locales');
         $session->set('siteLocales', explode('|', $locales));
 

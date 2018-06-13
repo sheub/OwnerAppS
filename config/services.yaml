@@ -2,7 +2,10 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
-    app.locales: 'en|fr'
+    app.locales: 'de|en|fr'
+    name: 'OwnerApp'
+    ga_tracking: UA-xxxxx-x
+
 
 services:
     # default configuration for services in *this* file
@@ -19,47 +22,47 @@ services:
         resource: '../src/*'
         exclude: '../src/{Entity,Migrations,Tests,Kernel.php}'
 
-    # controllers are imported separately to make sure services can be injected
-    # as action arguments even if you don't extend any base controller class
-    App\Controller\:
-        resource: '../src/Controller'
-        tags: ['controller.service_arguments']
+    # # controllers are imported separately to make sure services can be injected
+    # # as action arguments even if you don't extend any base controller class
+    # App\Controller\:
+    #     resource: '../src/Controller'
+    #     tags: ['controller.service_arguments']
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    # # add more service definitions when explicit configuration is needed
+    # # please note that last definitions always *replace* previous ones
 
-    auth_token_user_provider:
-        class: App\Security\AuthTokenUserProvider
-        arguments: ["@auth_token_repository", "@user_repository"]
-        public:    false
+    # auth_token_user_provider:
+    #     class: App\Security\AuthTokenUserProvider
+    #     arguments: ["@auth_token_repository", "@user_repository"]
+    #     public:    false
 
-    auth_token_repository:
-        class:   Doctrine\ORM\EntityManager
-        factory: ["@doctrine.orm.entity_manager", "getRepository"]
-        arguments: ["App:AuthToken"]
+    # auth_token_repository:
+    #     class:   Doctrine\ORM\EntityManager
+    #     factory: ["@doctrine.orm.entity_manager", "getRepository"]
+    #     arguments: ["App:AuthToken"]
 
-    user_repository:
-        class:   Doctrine\ORM\EntityManager
-        factory: ["@doctrine.orm.entity_manager", "getRepository"]
-        arguments: ["App:User"]
+    # user_repository:
+    #     class:   Doctrine\ORM\EntityManager
+    #     factory: ["@doctrine.orm.entity_manager", "getRepository"]
+    #     arguments: ["App:User"]
 
-    auth_token_authenticator:
-        class:     App\Security\AuthTokenAuthenticator
-        arguments: ["@security.http_utils"]
-        public:    false
+    # auth_token_authenticator:
+    #     class:     App\Security\AuthTokenAuthenticator
+    #     arguments: ["@security.http_utils"]
+    #     public:    false
 
-    FOS\OAuthServerBundle\Model\AccessTokenManagerInterface:
-        alias: fos_oauth_server.access_token_manager.default
-        public: true
+    # FOS\OAuthServerBundle\Model\AccessTokenManagerInterface:
+    #     alias: fos_oauth_server.access_token_manager.default
+    #     public: true
 
-    FOS\OAuthServerBundle\Model\AuthCodeManagerInterface:
-        alias: fos_oauth_server.auth_code_manager.default
-        public: true
+    # FOS\OAuthServerBundle\Model\AuthCodeManagerInterface:
+    #     alias: fos_oauth_server.auth_code_manager.default
+    #     public: true
 
-    FOS\OAuthServerBundle\Model\ClientManagerInterface:
-        alias: fos_oauth_server.client_manager.default
-        public: true
+    # FOS\OAuthServerBundle\Model\ClientManagerInterface:
+    #     alias: fos_oauth_server.client_manager.default
+    #     public: true
 
-    FOS\OAuthServerBundle\Model\RefreshTokenManagerInterface:
-        alias: fos_oauth_server.refresh_token_manager.default
-        public: true
+    # FOS\OAuthServerBundle\Model\RefreshTokenManagerInterface:
+    #     alias: fos_oauth_server.refresh_token_manager.default
+    #     public: true

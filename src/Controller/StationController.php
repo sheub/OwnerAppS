@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Manly
- * Date: 12/05/2018
- * Time: 12:18
- */
 
 namespace App\Controller;
 
@@ -19,8 +13,6 @@ use Symfony\Component\HttpFoundation\Response;
  * Class StationController
  *
  * @Route("/{_locale}/station", name="station_", requirements={"_locale"="%app.locales%"})
- *
- * @author Manly AUSTRIE <austrie.manly@gmail.com>
  */
 class StationController extends Controller
 {
@@ -29,7 +21,6 @@ class StationController extends Controller
      *
      * @Route("/list", name="list")
      *
-     * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
     public function stationList()
     {
@@ -48,7 +39,6 @@ class StationController extends Controller
      * @param Station $station
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
-     * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
     public function stationEdit(Request $request, Station $station)
     {
@@ -63,7 +53,6 @@ class StationController extends Controller
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
-     * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
     public function stationNew(Request $request)
     {
@@ -78,7 +67,6 @@ class StationController extends Controller
      * @param Station $station
      * @return Response
      *
-     * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
     public function stationDelete(Station $station)
     {
@@ -102,7 +90,6 @@ class StationController extends Controller
      * @param bool $new
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      *
-     * @author Manly AUSTRIE <austrie.manly@gmail.com>
      */
     private function processStation(Request $request, Station $station, bool $new = false)
     {

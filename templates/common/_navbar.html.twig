@@ -17,7 +17,7 @@
                         </li>
                         <li></li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Bienvenue {{ app.user.username }}</a>
+                            <a class="nav-link" href="#">{{ 'common.welcome.message'|trans }} {{ app.user.username }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ path("fos_user_security_logout") }}" >

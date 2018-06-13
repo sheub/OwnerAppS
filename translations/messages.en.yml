@@ -1,7 +1,18 @@
-common:
-    home: 'Home'
-homepage:
-    btn:
-        view: 'View'
-        edit: 'Edit'
-    available: 'Available'
+common.home: Home
+homepage.btn.view: View
+homepage.btn.edit: Edit
+homepage.available: Available
+security.login.msgSignIn: Please sign in
+security.login.username: 'e-mail address'
+security.login.password: password
+security.login.remember_me: 'Remember me'
+security.login.forget_password: 'Forget password'
+security.login.submit: OK
+city.new: 'New City'
+common.city: Cities
+common.station: Station
+homepage.header.title: 'Zoestha Owner App'
+homepage.descrption.title: 'The Application for shop Owners'
+homepage.stations: Stations
+station.new: New
+common.welcome.message: Welcome

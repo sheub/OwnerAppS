@@ -1,35 +1,55 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
-    encoders:
-        FOS\UserBundle\Model\UserInterface: bcrypt
+    # encoders:
+    #     FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
 
+    # providers:
+    #     fos_userbundle:
+    #         id: fos_user.user_provider.username
     providers:
-        fos_userbundle:
-            id: fos_user.user_provider.username
+        webservice:
+            id: App\Security\User\WebserviceUserProvider
+        in_memory:
+            memory:
+                users:
+                    ryan:
+                        password: ryanpass
+                        roles: 'ROLE_USER'
+                    admin:
+                        password: kitten
+                        roles: 'ROLE_ADMIN'
+                    sebastien@sheub.eu:
+                        password: kitten
+                        roles: 'ROLE_ADMIN'
+                        
+    encoders:
+        Symfony\Component\Security\Core\User\User: plaintext
 
 
     firewalls:
-        oauth_token:                                   # Everyone can access the access token URL.
-            pattern: ^/oauth/v2/token
-            security: false
-        api:
-            pattern: ^/api                                # All URLs are protected
-            fos_oauth: true                            # OAuth2 protected resource
-            stateless: true                            # Do no set session cookies
-            anonymous: false                           # Anonymous access is not allowed
+    #     oauth_token:                                   # Everyone can access the access token URL.
+    #         pattern: ^/oauth/v2/token
+    #         security: false
+    #     api:
+    #         pattern: ^/api                                # All URLs are protected
+    #         fos_oauth: true                            # OAuth2 protected resource
+    #         stateless: true                            # Do no set session cookies
+    #         anonymous: false                           # Anonymous access is not allowed
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            pattern: ^/
-            form_login:
-                provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager
-                success_handler: App\Handler\UserConnectionSuccessHandler
-            logout:       true
-            anonymous:    true
+            anonymous: ~
+    #        http_basic: ~
+    #         pattern: ^/
+    #         form_login:
+    #             provider: fos_userbundle
+    #             csrf_token_generator: security.csrf.token_manager
+    #             success_handler: App\Handler\UserConnectionSuccessHandler
+    #         logout:       true
+    #         anonymous:    true
 
             # activate different ways to authenticate
 
@@ -41,9 +61,10 @@ security:
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
+        
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/ , role: ROLE_USER }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/login$, role: ROLE_ADMIN }
+        - { path: ^/ , role: ROLE_ADMIN }
+        - { path: ^/register, role: ROLE_ADMIN }
+        - { path: ^/resetting, role: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }

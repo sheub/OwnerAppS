@@ -9,7 +9,7 @@
     <title>Signin Template for Bootstrap</title>
 
     <!-- Custom styles for this template -->
-    <link href="signin.css" rel="stylesheet">
+    <!--link href="signin.css" rel="stylesheet">
     <style>
         html,
         body {
@@ -60,17 +60,14 @@
             border-top-left-radius: 0;
             border-top-right-radius: 0;
         }
-    </style>
+    </style-->
 </head>
 
 <body class="text-center">
+<div id="vueApp"></div>
     {% block fos_user_content %}
     {% endblock fos_user_content %}
 <script src="{{ asset('build/app.js') }}"></script>
-    <script defer
-            src="https://use.fontawesome.com/releases/v5.0.12/js/all.js"
-            integrity="sha384-Voup2lBiiyZYkRto2XWqbzxHXwzcm4A5RfdfG6466bu5LqjwwrjXCMBQBLMWh7qR"
-            crossorigin="anonymous">
-        </script>
+
 </body>
 </html>

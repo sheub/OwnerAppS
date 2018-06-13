@@ -13,6 +13,7 @@
         {% if csrf_token %}
             <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
         {% endif %}
+        {{ path('fos_user_security_check') }}
         <p><i class="fas fa-bicycle fa-7x"></i></p>
         <h1 class="h3 mb-3 font-weight-normal">{{ 'security.login.msgSignIn'|trans }}</h1>
         <label for="username" class="sr-only">Email address</label>
